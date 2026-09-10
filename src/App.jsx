@@ -422,7 +422,7 @@ export default function App() {
           {screen === "home" && (
             <Dashboard profile={profile} streak={streak} weekCompleted={weekCompleted} schedule={profile.schedule}
               level={level} phase={phase} weekNumber={weekNumber} todayDay={todayDay} history={activity.history}
-              missed={missed} onStart={() => startWorkout(todayDay)} onReset={startResetWorkout} onNav={setScreen}
+              missed={missed} onStart={() => (todayDay ? startWorkout(todayDay) : startResetWorkout())} onReset={startResetWorkout} onNav={setScreen}
               deload={activity.deload} />
           )}
           {screen === "workouts" && (
