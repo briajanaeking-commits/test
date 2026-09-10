@@ -24,66 +24,222 @@ const EXERCISES = {
     cues: "Small circles growing larger, keep shoulders relaxed.", mistake: "Shrugging shoulders up toward ears." },
   hipCircle: { name: "Hip Circles", pose: "hipCircle", cat: "Mobility", muscles: "Hips, warm-up",
     cues: "Hands on hips, slow controlled circles both directions.", mistake: "Moving too fast to feel the stretch." },
-  gobletSquat: { name: "Goblet Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes",
+
+  // --- squat (role: squat) ---
+  bodyweightSquat: { name: "Bodyweight Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes", level: "beginner",
+    cues: "Feet hip-width, sit back and down like sitting in a chair, chest tall.", mistake: "Rising onto the toes instead of staying flat-footed.",
+    alternatives: ["Chair Squat", "Goblet Squat"] },
+  chairSquat: { name: "Chair Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes", level: "beginner",
+    home: "Sit-to-stand from a sturdy chair",
+    cues: "Lightly tap the chair and stand back up, control the descent.", mistake: "Plopping down instead of lowering with control." },
+  gobletSquat: { name: "Goblet Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes", level: "intermediate",
     home: "Dumbbell Goblet Squat", gym: "Goblet / Smith Machine Squat", trackWeight: true,
     cues: "Chest up, sit back and down, knees track over toes.", mistake: "Letting knees cave inward.",
     alternatives: ["Bodyweight Squat", "Chair Squat", "Leg Press"] },
-  bulgarianSplitSquat: { name: "Bulgarian Split Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes (unilateral)",
+  sumoSquat: { name: "Sumo Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes, Inner Thighs", level: "intermediate",
+    home: "Dumbbell Sumo Squat", gym: "Smith Machine Sumo Squat", trackWeight: true,
+    cues: "Wide stance, toes turned out, drive knees out in line with toes.", mistake: "Letting the knees drift inward at the bottom." },
+  bulgarianSplitSquat: { name: "Bulgarian Split Squat", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes (unilateral)", level: "advanced",
     home: "Bulgarian Split Squat, rear foot elevated", gym: "Smith Machine Split Squat", trackWeight: true,
     cues: "Rear foot elevated on a chair or bench, drop straight down, front knee tracks over toes.",
     mistake: "Leaning too far forward and losing balance.", alternatives: ["Goblet Squat", "Step-Up"] },
-  gluteBridge: { name: "Glute Bridge", pose: "bridge", cat: "Glutes", muscles: "Glutes, Hamstrings",
-    home: "Banded Glute Bridge", gym: "Hip Thrust Machine", trackWeight: true,
-    cues: "Squeeze glutes at the top, ribs down, avoid arching low back.", mistake: "Overextending the lower back at the top.",
-    alternatives: ["Dumbbell Hip Thrust", "Single-Leg Bridge"] },
-  hipThrust: { name: "Hip Thrust", pose: "bridge", cat: "Glutes", muscles: "Glutes, Hamstrings",
-    home: "Dumbbell Hip Thrust, shoulders on a bench", gym: "Hip Thrust Machine", trackWeight: true,
-    cues: "Drive through heels, full lockout at the top, chin tucked slightly.", mistake: "Not reaching full hip extension.",
-    alternatives: ["Glute Bridge", "Single-Leg Hip Thrust"] },
-  rdl: { name: "Romanian Deadlift", pose: "hinge", cat: "Lower Body", muscles: "Hamstrings, Glutes",
+  walkingLunge: { name: "Walking Lunge", pose: "squat", cat: "Lower Body", muscles: "Quads, Glutes (unilateral)", level: "advanced",
+    home: "Dumbbell Walking Lunge", gym: "Barbell Walking Lunge", trackWeight: true,
+    cues: "Long step forward, back knee lowers toward the floor, drive through the front heel.",
+    mistake: "Taking too short a step, putting all the load on the front knee." },
+
+  // --- hip hinge (role: hipHinge) ---
+  hipHingeDrill: { name: "Hip Hinge Drill", pose: "hinge", cat: "Lower Body", muscles: "Hamstrings, Glutes", level: "beginner",
+    home: "Bodyweight hip hinge, hands on hips",
+    cues: "Push the hips straight back like closing a car door, soft knees, flat back.", mistake: "Bending from the knees instead of the hips." },
+  rdl: { name: "Romanian Deadlift", pose: "hinge", cat: "Lower Body", muscles: "Hamstrings, Glutes", level: "intermediate",
     home: "Dumbbell Romanian Deadlift", gym: "Barbell Romanian Deadlift", trackWeight: true,
     cues: "Hinge at the hips, soft knees, weight glides down the shins.", mistake: "Rounding the back instead of hinging.",
     alternatives: ["Kickstand RDL", "Cable Pull-Through"] },
-  lateralWalk: { name: "Banded Lateral Walk", pose: "lateral", cat: "Glutes", muscles: "Glutes, Hips",
+  singleLegRDL: { name: "Single-Leg RDL", pose: "hinge", cat: "Lower Body", muscles: "Hamstrings, Glutes (unilateral)", level: "advanced",
+    home: "Dumbbell Single-Leg RDL, kickstand or free", gym: "Cable Single-Leg RDL", trackWeight: true,
+    cues: "Hinge over the standing leg, back leg reaches behind you for balance.", mistake: "Rotating the hips open instead of staying square." },
+
+  // --- glute bridge / hip thrust (role: glueBridgeHipThrust) ---
+  gluteBridge: { name: "Glute Bridge", pose: "bridge", cat: "Glutes", muscles: "Glutes, Hamstrings", level: "beginner",
+    home: "Banded Glute Bridge", gym: "Hip Thrust Machine", trackWeight: true,
+    cues: "Squeeze glutes at the top, ribs down, avoid arching low back.", mistake: "Overextending the lower back at the top.",
+    alternatives: ["Dumbbell Hip Thrust", "Single-Leg Bridge"] },
+  hipThrust: { name: "Hip Thrust", pose: "bridge", cat: "Glutes", muscles: "Glutes, Hamstrings", level: "intermediate",
+    home: "Dumbbell Hip Thrust, shoulders on a bench", gym: "Hip Thrust Machine", trackWeight: true,
+    cues: "Drive through heels, full lockout at the top, chin tucked slightly.", mistake: "Not reaching full hip extension.",
+    alternatives: ["Glute Bridge", "Single-Leg Hip Thrust"] },
+  singleLegHipThrust: { name: "Single-Leg Hip Thrust", pose: "bridge", cat: "Glutes", muscles: "Glutes, Hamstrings (unilateral)", level: "advanced",
+    home: "Single-Leg Hip Thrust, shoulders on a bench", gym: "Single-Leg Hip Thrust Machine", trackWeight: true,
+    cues: "One foot planted, other leg extended, drive through the planted heel without letting the hips tip.",
+    mistake: "Letting the hips rotate toward the working side." },
+
+  // --- hip abduction (role: lateralHip) ---
+  sideLyingLegRaise: { name: "Side-Lying Leg Raise", pose: "lateral", cat: "Glutes", muscles: "Glutes, Hips", level: "beginner",
+    cues: "Lie on your side, lift the top leg straight up with control, hips stacked.", mistake: "Rolling the hips backward to lift higher." },
+  lateralWalk: { name: "Banded Lateral Walk", pose: "lateral", cat: "Glutes", muscles: "Glutes, Hips", level: "intermediate",
     home: "Mini Band Lateral Walk", gym: "Cable Abduction",
     cues: "Slight knee bend, step wide and controlled, stay low.", mistake: "Standing up tall — keep tension in the band.",
     alternatives: ["Side-Lying Leg Raise", "Cable Abduction"] },
-  kickback: { name: "Standing Kickback", pose: "kickback", cat: "Glutes", muscles: "Glutes",
+  monsterWalk: { name: "Monster Walk", pose: "lateral", cat: "Glutes", muscles: "Glutes, Hips", level: "advanced",
+    home: "Heavy Mini Band Monster Walk", gym: "Cable Abduction, heavier load",
+    cues: "Band above the knees, diagonal steps forward, stay low the whole time.", mistake: "Letting the knees pull inward between steps." },
+
+  // --- glute kickback (role: glueKickback) ---
+  quadrupedKickback: { name: "Quadruped Kickback", pose: "kickback", cat: "Glutes", muscles: "Glutes", level: "beginner",
+    home: "Bodyweight Kickback, on hands and knees",
+    cues: "On hands and knees, drive one heel toward the ceiling, squeeze at the top.", mistake: "Arching the lower back to lift higher." },
+  kickback: { name: "Standing Kickback", pose: "kickback", cat: "Glutes", muscles: "Glutes", level: "intermediate",
     home: "Standing Banded Kickback", gym: "Cable Kickback",
     cues: "Hinge slightly forward, drive heel back and up, squeeze.", mistake: "Using momentum instead of glute squeeze.",
     alternatives: ["Quadruped Kickback"] },
-  dbRow: { name: "Dumbbell Row", pose: "row", cat: "Back", muscles: "Back, Biceps",
+  weightedStandingKickback: { name: "Weighted Standing Kickback", pose: "kickback", cat: "Glutes", muscles: "Glutes", level: "advanced",
+    home: "Ankle-Weight Standing Kickback", gym: "Cable Kickback, heavier load", trackWeight: true,
+    cues: "Hold a wall or chair for balance, drive the heel back and up under control.", mistake: "Rushing the tempo and swinging the leg." },
+
+  // --- calves (role: calf) ---
+  seatedCalfRaise: { name: "Seated Calf Raise", pose: "calf", cat: "Calves", muscles: "Calves", level: "beginner",
+    home: "Seated Calf Raise, hands on thighs",
+    cues: "Feet flat, press through the balls of the feet, pause at the top.", mistake: "Bouncing instead of pausing at full contraction." },
+  standingCalfRaise: { name: "Standing Calf Raise", pose: "calf", cat: "Calves", muscles: "Calves", level: "intermediate",
+    home: "Dumbbell Standing Calf Raise", gym: "Calf Raise Machine", trackWeight: true,
+    cues: "Rise onto the toes, full stretch at the bottom, full pause at the top.", mistake: "Only using half the range of motion." },
+  singleLegCalfRaise: { name: "Single-Leg Calf Raise", pose: "calf", cat: "Calves", muscles: "Calves (unilateral)", level: "advanced",
+    home: "Single-Leg Calf Raise, hold a wall for balance", gym: "Single-Leg Calf Raise, weighted", trackWeight: true,
+    cues: "One foot on the ground, rise onto the toes with control, lower slowly.", mistake: "Letting the ankle roll outward." },
+
+  // --- horizontal pull (role: row) ---
+  bandRow: { name: "Band Row", pose: "row", cat: "Back", muscles: "Back, Biceps", level: "beginner",
+    home: "Resistance Band Seated Row",
+    cues: "Sit tall, pull the band to the ribs, squeeze shoulder blades together.", mistake: "Rounding the shoulders forward at the start." },
+  dbRow: { name: "Dumbbell Row", pose: "row", cat: "Back", muscles: "Back, Biceps", level: "intermediate",
     home: "Dumbbell Row (bench or chair)", gym: "Seated Cable Row", trackWeight: true,
     cues: "Flat back, pull elbow to hip, squeeze shoulder blade.", mistake: "Twisting the torso to pull the weight up.",
     alternatives: ["Supported Row", "Resistance Band Row"] },
-  latPulldown: { name: "Lat Pulldown", pose: "row", cat: "Back", muscles: "Back, Biceps",
+  latPulldown: { name: "Lat Pulldown", pose: "row", cat: "Back", muscles: "Back, Biceps", level: "advanced",
     home: "Band Lat Pulldown", gym: "Lat Pulldown Machine", trackWeight: true,
     cues: "Pull to collarbone, lead with the elbows, control the return.", mistake: "Leaning back excessively to move more weight.",
     alternatives: ["Dumbbell Row"] },
-  shoulderPress: { name: "Shoulder Press", pose: "press", cat: "Shoulders", muscles: "Shoulders, Triceps",
+
+  // --- chest press (role: chestPress) ---
+  inclineKneePushUp: { name: "Incline Push-Up", pose: "press", cat: "Chest", muscles: "Chest, Triceps", level: "beginner",
+    home: "Hands elevated on a counter or sturdy chair",
+    cues: "Straight line from head to heels, lower chest toward your hands.", mistake: "Letting the hips sag toward the floor." },
+  dbChestPress: { name: "Dumbbell Chest Press", pose: "press", cat: "Chest", muscles: "Chest, Triceps", level: "intermediate",
+    home: "Dumbbell Floor Press", gym: "Bench Press or Chest Press Machine", trackWeight: true,
+    cues: "Lower with control to chest level, press up without locking elbows hard.", mistake: "Flaring the elbows straight out to the sides." },
+  standardPushUp: { name: "Standard Push-Up", pose: "press", cat: "Chest", muscles: "Chest, Triceps", level: "advanced",
+    home: "Full Push-Up, feet on the floor",
+    cues: "Full range of motion, chest nearly touches the floor, core stays braced.", mistake: "Letting the lower back sag or pike the hips." },
+
+  // --- shoulder press (role: shoulderPress) ---
+  seatedBandPress: { name: "Seated Band Press", pose: "press", cat: "Shoulders", muscles: "Shoulders, Triceps", level: "beginner",
+    home: "Seated Resistance Band Overhead Press",
+    cues: "Band under the seat, press straight overhead, avoid arching the back.", mistake: "Leaning back to help the band up." },
+  shoulderPress: { name: "Shoulder Press", pose: "press", cat: "Shoulders", muscles: "Shoulders, Triceps", level: "intermediate",
     home: "Dumbbell Shoulder Press", gym: "Machine Shoulder Press", trackWeight: true,
     cues: "Press straight overhead, ribs down, avoid arching back.", mistake: "Flaring elbows too wide too fast.",
     alternatives: ["Seated Band Press"] },
-  bicepCurl: { name: "Bicep Curl", pose: "curl", cat: "Arms", muscles: "Biceps",
+  singleArmShoulderPress: { name: "Single-Arm Shoulder Press", pose: "press", cat: "Shoulders", muscles: "Shoulders, Triceps, Core", level: "advanced",
+    home: "Dumbbell Single-Arm Standing Press", gym: "Single-Arm Machine Press", trackWeight: true,
+    cues: "Press one side overhead at a time, brace the core to resist leaning.", mistake: "Letting the torso tip toward the working side." },
+
+  // --- bicep curl (role: bicepCurl) ---
+  bandCurl: { name: "Band Curl", pose: "curl", cat: "Arms", muscles: "Biceps", level: "beginner",
+    home: "Resistance Band Bicep Curl",
+    cues: "Stand on the band, elbows pinned to sides, curl slow and controlled.", mistake: "Swinging the whole body for momentum." },
+  bicepCurl: { name: "Bicep Curl", pose: "curl", cat: "Arms", muscles: "Biceps", level: "intermediate",
     home: "Dumbbell Bicep Curl", gym: "Cable Curl", trackWeight: true,
     cues: "Elbows pinned to sides, slow controlled curl.", mistake: "Swinging the whole body for momentum.",
     alternatives: ["Band Curl"] },
-  tricepExt: { name: "Overhead Tricep Extension", pose: "tricep", cat: "Arms", muscles: "Triceps",
+  hammerCurl: { name: "Hammer Curl", pose: "curl", cat: "Arms", muscles: "Biceps, Forearms", level: "advanced",
+    home: "Dumbbell Hammer Curl", gym: "Cable Hammer Curl", trackWeight: true,
+    cues: "Palms face each other the whole rep, elbows stay pinned to the sides.", mistake: "Letting the elbows drift forward." },
+
+  // --- tricep extension (role: tricepExt) ---
+  bandPressdown: { name: "Band Pressdown", pose: "tricep", cat: "Arms", muscles: "Triceps", level: "beginner",
+    home: "Resistance Band Overhead Pressdown",
+    cues: "Elbows close to your head, extend slowly, control the return.", mistake: "Letting the elbows flare outward." },
+  tricepExt: { name: "Overhead Tricep Extension", pose: "tricep", cat: "Arms", muscles: "Triceps", level: "intermediate",
     home: "Dumbbell Overhead Extension", gym: "Cable Overhead Extension", trackWeight: true,
     cues: "Elbows close to head, lower slow, extend fully.", mistake: "Letting elbows flare outward.",
     alternatives: ["Band Pressdown"] },
-  deadBug: { name: "Dead Bug", pose: "deadbug", cat: "Core", muscles: "Core (neck-friendly)",
+  tricepDip: { name: "Chair Dip", pose: "tricep", cat: "Arms", muscles: "Triceps, Shoulders", level: "advanced",
+    home: "Bench or Chair Dip, knees bent",
+    cues: "Hands on the edge behind you, lower with control, press back up.", mistake: "Letting the shoulders creep up toward the ears." },
+
+  // --- forearms (role: forearm) ---
+  wristCurl: { name: "Wrist Curl", pose: "curl", cat: "Forearms", muscles: "Forearms", level: "beginner",
+    home: "Seated Dumbbell Wrist Curl", trackWeight: true,
+    cues: "Forearm resting on your thigh, curl the wrist up slowly, lower fully.", mistake: "Using the whole arm instead of just the wrist." },
+  reverseCurl: { name: "Reverse Curl", pose: "curl", cat: "Forearms", muscles: "Forearms, Biceps", level: "intermediate",
+    home: "Dumbbell Reverse Grip Curl", gym: "Cable Reverse Curl", trackWeight: true,
+    cues: "Palms face down the whole rep, curl with control, elbows pinned.", mistake: "Rotating the wrists to make it easier." },
+  farmersCarry: { name: "Farmer's Carry", pose: "march", cat: "Forearms", muscles: "Forearms, Grip, Core", level: "advanced",
+    home: "Dumbbell Farmer's Carry, walk a set distance", gym: "Kettlebell or Dumbbell Farmer's Carry", trackWeight: true,
+    cues: "Stand tall, shoulders back, walk with steady controlled steps.", mistake: "Letting the shoulders round forward under the load." },
+
+  // --- core: anti-extension (role: coreAntiExtension) ---
+  heelTaps: { name: "Heel Taps", pose: "deadbug", cat: "Core", muscles: "Core (neck-friendly)", level: "beginner",
+    cues: "Knees bent at 90°, low back pressed to the floor, tap one heel down at a time.", mistake: "Letting the low back arch off the floor." },
+  deadBug: { name: "Dead Bug", pose: "deadbug", cat: "Core", muscles: "Core (neck-friendly)", level: "intermediate",
     cues: "Low back pressed to floor, extend opposite arm and leg slowly.", mistake: "Letting the low back arch off the floor.",
     alternatives: ["Heel Taps", "Bird Dog"] },
-  birdDog: { name: "Bird Dog", pose: "birddog", cat: "Core", muscles: "Core (neck-friendly)",
+  hollowBodyHold: { name: "Hollow Body Hold", pose: "deadbug", cat: "Core", muscles: "Core", level: "advanced",
+    cues: "Low back pressed down, arms and legs extended and lifted, ribs stay down.", mistake: "Letting the low back arch off the floor as fatigue sets in." },
+
+  // --- core: anti-rotation (role: coreAntiRotation) ---
+  birdDog: { name: "Bird Dog", pose: "birddog", cat: "Core", muscles: "Core (neck-friendly)", level: "beginner",
     cues: "Neutral spine, extend opposite arm and leg, keep hips level.", mistake: "Letting the hips rotate open.",
     alternatives: ["Dead Bug", "Standing Marches"] },
+  pallofPress: { name: "Pallof Press", pose: "press", cat: "Core", muscles: "Core, Obliques", level: "intermediate",
+    home: "Band Pallof Press, anchor to the side",
+    cues: "Press the band straight out from your chest, resist it pulling you to the side.", mistake: "Letting the torso rotate toward the anchor." },
+  plankShoulderTap: { name: "Plank Shoulder Tap", pose: "sideplank", cat: "Core", muscles: "Core, Obliques", level: "advanced",
+    cues: "In a plank, tap opposite shoulder with each hand, keep hips as still as possible.", mistake: "Letting the hips rock side to side." },
+
+  // --- cardio / conditioning (role: cardioFinisher) ---
+  stepUps: { name: "Step-Ups", pose: "march", cat: "Cardio", muscles: "Full body, conditioning", level: "beginner",
+    home: "Step-Up onto a sturdy stair or box",
+    cues: "Drive through the stepping foot, stand fully tall at the top, step down with control.", mistake: "Pushing off the bottom leg instead of the top one." },
+  mountainClimbers: { name: "Mountain Climbers", pose: "march", cat: "Cardio", muscles: "Full body, conditioning", level: "intermediate",
+    cues: "Hands under shoulders, drive knees toward the chest at a steady pace.", mistake: "Letting the hips pike up into the air." },
+  burpeeModified: { name: "Modified Burpee", pose: "squat", cat: "Cardio", muscles: "Full body, conditioning", level: "advanced",
+    home: "Squat Thrust, step back instead of jumping",
+    cues: "Squat, place hands down, step (or jump) feet back and in, stand tall to finish.", mistake: "Rounding the back as fatigue sets in." },
+
   sidePlank: { name: "Side Plank (from knees)", pose: "sideplank", cat: "Core", muscles: "Core, Obliques (neck-friendly)",
     cues: "Stack shoulders and hips, long line from head to knee, neck relaxed.", mistake: "Letting hips sag toward the floor.",
     alternatives: ["Modified Plank", "Pallof Press"] },
   cooldownStretch: { name: "Standing Forward Fold", pose: "stretch", cat: "Mobility", muscles: "Cooldown, hamstrings",
     cues: "Soft knees, let the head and neck hang heavy, breathe slowly.", mistake: "Locking the knees." },
 };
+
+// Which exercises fill each workout "slot" at each skill level — this is what
+// makes the program vary by the level chosen in Profile rather than being fixed.
+const EXERCISE_POOLS = {
+  squat: { beginner: ["bodyweightSquat", "chairSquat"], intermediate: ["gobletSquat", "sumoSquat"], advanced: ["bulgarianSplitSquat", "walkingLunge"] },
+  hipHinge: { beginner: ["hipHingeDrill"], intermediate: ["rdl"], advanced: ["singleLegRDL"] },
+  glueBridgeHipThrust: { beginner: ["gluteBridge"], intermediate: ["hipThrust"], advanced: ["singleLegHipThrust"] },
+  lateralHip: { beginner: ["sideLyingLegRaise"], intermediate: ["lateralWalk"], advanced: ["monsterWalk"] },
+  glueKickback: { beginner: ["quadrupedKickback"], intermediate: ["kickback"], advanced: ["weightedStandingKickback"] },
+  calf: { beginner: ["seatedCalfRaise"], intermediate: ["standingCalfRaise"], advanced: ["singleLegCalfRaise"] },
+  row: { beginner: ["bandRow"], intermediate: ["dbRow"], advanced: ["latPulldown"] },
+  chestPress: { beginner: ["inclineKneePushUp"], intermediate: ["dbChestPress"], advanced: ["standardPushUp"] },
+  shoulderPress: { beginner: ["seatedBandPress"], intermediate: ["shoulderPress"], advanced: ["singleArmShoulderPress"] },
+  bicepCurl: { beginner: ["bandCurl"], intermediate: ["bicepCurl"], advanced: ["hammerCurl"] },
+  tricepExt: { beginner: ["bandPressdown"], intermediate: ["tricepExt"], advanced: ["tricepDip"] },
+  forearm: { beginner: ["wristCurl"], intermediate: ["reverseCurl"], advanced: ["farmersCarry"] },
+  coreAntiExtension: { beginner: ["heelTaps"], intermediate: ["deadBug"], advanced: ["hollowBodyHold"] },
+  coreAntiRotation: { beginner: ["birdDog"], intermediate: ["pallofPress"], advanced: ["plankShoulderTap"] },
+  cardioFinisher: { beginner: ["stepUps"], intermediate: ["mountainClimbers"], advanced: ["burpeeModified"] },
+};
+
+function levelTier(profileLevel) {
+  if (profileLevel === "Advanced") return "advanced";
+  if (profileLevel === "Intermediate") return "intermediate";
+  return "beginner"; // Complete Beginner and Beginner share the beginner-tier pool
+}
 
 const WARMUP = [{ id: "march", sets: 1, reps: "45 sec" }, { id: "armCircle", sets: 1, reps: "20 sec each way" }, { id: "hipCircle", sets: 1, reps: "20 sec each way" }];
 const COOLDOWN = [{ id: "cooldownStretch", sets: 1, reps: "60 sec" }];
@@ -94,24 +250,28 @@ const DAY_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
 
 const BASE_DAYS = {
   d1: [
-    { id: "gobletSquat", advancedId: "bulgarianSplitSquat", baseSets: 2, baseReps: 8, rest: 60 },
-    { id: "gluteBridge", advancedId: "hipThrust", baseSets: 2, baseReps: 10, rest: 45 },
-    { id: "rdl", baseSets: 2, baseReps: 8, rest: 60 },
-    { id: "lateralWalk", baseSets: 2, baseReps: "10 each side", rest: 45 },
-    { id: "kickback", baseSets: 2, baseReps: "10 each side", rest: 45 },
+    { role: "squat", baseSets: 2, baseReps: 8, rest: 60 },
+    { role: "glueBridgeHipThrust", baseSets: 2, baseReps: 10, rest: 45 },
+    { role: "hipHinge", baseSets: 2, baseReps: 8, rest: 60 },
+    { role: "lateralHip", baseSets: 2, baseReps: "10 each side", rest: 45 },
+    { role: "glueKickback", baseSets: 2, baseReps: "10 each side", rest: 45 },
+    { role: "calf", baseSets: 2, baseReps: 15, rest: 30 },
   ],
   d2: [
-    { id: "dbRow", advancedId: "latPulldown", baseSets: 2, baseReps: 10, rest: 60 },
-    { id: "shoulderPress", baseSets: 2, baseReps: 8, rest: 60 },
-    { id: "bicepCurl", baseSets: 2, baseReps: 10, rest: 45 },
-    { id: "tricepExt", baseSets: 2, baseReps: 10, rest: 45 },
+    { role: "row", baseSets: 2, baseReps: 10, rest: 60 },
+    { role: "chestPress", baseSets: 2, baseReps: 10, rest: 60 },
+    { role: "shoulderPress", baseSets: 2, baseReps: 8, rest: 60 },
+    { role: "bicepCurl", baseSets: 2, baseReps: 10, rest: 45 },
+    { role: "tricepExt", baseSets: 2, baseReps: 10, rest: 45 },
+    { role: "forearm", baseSets: 2, baseReps: 12, rest: 30 },
   ],
   d3: [
-    { id: "gobletSquat", advancedId: "bulgarianSplitSquat", baseSets: 2, baseReps: 10, rest: 60 },
-    { id: "dbRow", advancedId: "latPulldown", baseSets: 2, baseReps: 10, rest: 60 },
-    { id: "gluteBridge", advancedId: "hipThrust", baseSets: 2, baseReps: 12, rest: 45 },
-    { id: "deadBug", baseSets: 2, baseReps: "8 each side", rest: 30 },
-    { id: "birdDog", baseSets: 2, baseReps: "8 each side", rest: 30 },
+    { role: "squat", baseSets: 2, baseReps: 10, rest: 60 },
+    { role: "row", baseSets: 2, baseReps: 10, rest: 60 },
+    { role: "glueBridgeHipThrust", baseSets: 2, baseReps: 12, rest: 45 },
+    { role: "coreAntiExtension", baseSets: 2, baseReps: "8 each side", rest: 30 },
+    { role: "coreAntiRotation", baseSets: 2, baseReps: "8 each side", rest: 30 },
+    { role: "cardioFinisher", baseSets: 2, baseReps: "30 sec", rest: 30 },
   ],
   mobility: [
     { id: "hipCircle", baseSets: 2, baseReps: "30 sec each way", rest: 15 },
@@ -141,13 +301,18 @@ function phaseForWeek(week) {
   return { id: 5, name: "Continued Progress", tagline: "Becoming stronger than yesterday.", weeks: [13, 99], icon: "🔥" };
 }
 
-function buildDayExercises(dayId, week, deload) {
-  const phase = phaseForWeek(week);
-  const advanced = phase.id >= 3;
+function pickForRole(role, tier, week) {
+  const pool = EXERCISE_POOLS[role]?.[tier];
+  if (!pool || pool.length === 0) return null;
+  return pool[(week - 1) % pool.length];
+}
+
+function buildDayExercises(dayId, week, deload, profileLevel) {
   const base = BASE_DAYS[dayId] || [];
   const deloadFactor = deload ? 1 : 0;
+  const tier = levelTier(profileLevel);
   return base.map((e) => {
-    const exId = advanced && e.advancedId ? e.advancedId : e.id;
+    const exId = e.role ? pickForRole(e.role, tier, week) : e.id;
     let sets = Math.min(4, e.baseSets + Math.floor((week - 1) / 4)) - deloadFactor;
     sets = Math.max(1, sets);
     let reps = e.baseReps;
@@ -159,11 +324,11 @@ function buildDayExercises(dayId, week, deload) {
   });
 }
 
-function buildDay(dayId, week, deload) {
+function buildDay(dayId, week, deload, profileLevel) {
   const phase = phaseForWeek(week);
   const isMobility = dayId === "mobility";
-  const minutes = isMobility ? 15 : Math.min(50, 22 + phase.id * 5);
-  return { id: dayId, title: DAY_TITLES[dayId], minutes, exercises: buildDayExercises(dayId, week, deload) };
+  const minutes = isMobility ? 15 : Math.min(55, 24 + phase.id * 5);
+  return { id: dayId, title: DAY_TITLES[dayId], minutes, exercises: buildDayExercises(dayId, week, deload, profileLevel) };
 }
 
 const AFFIRMATIONS = [
@@ -322,7 +487,7 @@ export default function App() {
   const weekNumber = activity.startDate ? Math.min(99, Math.floor(daysBetween(activity.startDate, todayISO()) / 7) + 1) : 1;
   const phase = phaseForWeek(weekNumber);
   const todayDayId = WEEK_SCHEDULE[dayOfWeekIdx()];
-  const todayDay = todayDayId === "rest" ? null : buildDay(todayDayId, weekNumber, activity.deload);
+  const todayDay = todayDayId === "rest" ? null : buildDay(todayDayId, weekNumber, activity.deload, profile.level);
 
   const daysSinceLast = activity.history.length ? daysBetween(activity.history[0].date, todayISO()) : null;
   const missed = daysSinceLast !== null && daysSinceLast >= 5;
@@ -426,8 +591,8 @@ export default function App() {
               deload={activity.deload} />
           )}
           {screen === "workouts" && (
-            <WorkoutsScreen phase={phase} weekNumber={weekNumber} activity={activity} onOpenLibrary={() => setScreen("library")}
-              onStartDay={(id) => startWorkout(buildDay(id, weekNumber, activity.deload))} />
+            <WorkoutsScreen phase={phase} weekNumber={weekNumber} activity={activity} level={profile.level} onOpenLibrary={() => setScreen("library")}
+              onStartDay={(id) => startWorkout(buildDay(id, weekNumber, activity.deload, profile.level))} />
           )}
           {screen === "library" && <LibraryScreen exCounts={activity.exCounts} onBack={() => setScreen("workouts")} />}
           {screen === "progress" && <Progress activity={activity} setActivity={commitActivity} streak={streak} />}
@@ -516,6 +681,8 @@ function Shell({ children }) {
         .figure-hipCircle.playing .rig { animation: hipCircAnim var(--dur) infinite linear; transform-origin: 100px 112px; }
         @keyframes hipCircAnim { 0%{transform:rotate(0deg)} 100%{transform:rotate(8deg) translateX(3px)} }
         .figure-stretch.playing .rig { animation: hingeAnim var(--dur) infinite ease-in-out; transform-origin: 100px 112px; }
+        .figure-calf.playing .rig { animation: calfAnim var(--dur) infinite ease-in-out; }
+        @keyframes calfAnim { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
         @media (prefers-reduced-motion: reduce) { .figure .rig { animation: none !important; } }
       `}</style>
       {children}
@@ -636,7 +803,7 @@ function BottomNav({ screen, onNav }) {
 }
 
 /* -------------------------------- Workouts / Phase timeline -------------------------------- */
-function WorkoutsScreen({ phase, weekNumber, activity, onOpenLibrary, onStartDay }) {
+function WorkoutsScreen({ phase, weekNumber, activity, level, onOpenLibrary, onStartDay }) {
   const timeline = [
     { icon: "🌱", label: "Start", sub: "Learning the basics" },
     { icon: "🌿", label: "Foundation", sub: "Building consistency" },
@@ -665,7 +832,7 @@ function WorkoutsScreen({ phase, weekNumber, activity, onOpenLibrary, onStartDay
 
       <div className="tag" style={{ marginBottom: 10 }}>THIS WEEK · WEEK {weekNumber}</div>
       {days.map((id) => {
-        const d = buildDay(id, weekNumber, activity.deload);
+        const d = buildDay(id, weekNumber, activity.deload, level);
         return (
           <div key={id} className="card" style={{ marginBottom: 12, cursor: "pointer" }} onClick={() => onStartDay(id)}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -712,6 +879,7 @@ function LibraryScreen({ exCounts, onBack }) {
               <div>
                 <div style={{ fontWeight: 600, fontSize: 14.5 }}>{e.name}</div>
                 <div className="tag">{e.muscles}</div>
+                {e.level && <span className="pill" style={{ marginTop: 6, fontSize: 10.5, padding: "3px 9px", textTransform: "capitalize" }}>{e.level}</span>}
               </div>
               <span title={m.label} style={{ fontSize: 16 }}>{m.icon}</span>
             </div>
@@ -723,7 +891,8 @@ function LibraryScreen({ exCounts, onBack }) {
         <div className="modal-overlay" onClick={() => setSelected(null)}>
           <div className="card" style={{ width: "100%", maxHeight: "80vh", overflowY: "auto" }} onClick={(e) => e.stopPropagation()}>
             <h2 className="serif" style={{ fontSize: 20, marginBottom: 4 }}>{EXERCISES[selected].name}</h2>
-            <div className="tag" style={{ marginBottom: 14 }}>{EXERCISES[selected].muscles}</div>
+            <div className="tag" style={{ marginBottom: 6 }}>{EXERCISES[selected].muscles}</div>
+            {EXERCISES[selected].level && <span className="pill" style={{ marginBottom: 14, textTransform: "capitalize" }}>{EXERCISES[selected].level}</span>}
             <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}><ExerciseFigure pose={EXERCISES[selected].pose} playing={true} speed="normal" /></div>
             {EXERCISES[selected].home && <p style={{ fontSize: 13, marginBottom: 4 }}><b>Home:</b> {EXERCISES[selected].home}</p>}
             {EXERCISES[selected].gym && <p style={{ fontSize: 13, marginBottom: 10 }}><b>Gym:</b> {EXERCISES[selected].gym}</p>}
